@@ -54,7 +54,7 @@ jobs:
     - name: Deploy image to an EC2
       env:
         IMAGE: ${{ steps.build-image.outputs.image }}
-        KEY: 
+        KEY: ${{ secrets.KEY }}
 
       run: |
         echo "$KEY" > key && chmod 600 key
