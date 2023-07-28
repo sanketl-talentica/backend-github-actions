@@ -21,6 +21,7 @@ jobs:
       AWS_REGION: ap-south-1
       ECR_REPOSITORY: demo-backend
       PORT: 3000
+      IP: 3.7.65.20
 
     steps:
     - uses: actions/checkout@v3
@@ -50,9 +51,13 @@ jobs:
         echo "image=$REGISTRY/$REPOSITORY:$NEW_TAG" >> $GITHUB_OUTPUT
         echo $image
 
-    - name: Pull and Deploy image to an EC2
+    - name: Deploy image to an EC2
       env:
         IMAGE: ${{ steps.build-image.outputs.image }}
+        KEY: 
+
       run: |
+        echo "$KEY" > key && chmod 600 key
+        ssh -i key ubuntu@${IP}
         docker run -d -p $PORT:$PORT $IMAGE
          
