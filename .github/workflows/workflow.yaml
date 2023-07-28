@@ -20,6 +20,7 @@ jobs:
     env:
       AWS_REGION: ap-south-1
       ECR_REPOSITORY: demo-backend
+      PORT: 3000
 
     steps:
     - uses: actions/checkout@v3
@@ -48,3 +49,8 @@ jobs:
         echo "$REGISTRY/$REPOSITORY:$NEW_TAG"
         echo "image=$REGISTRY/$REPOSITORY:$NEW_TAG" >> $GITHUB_OUTPUT
         echo $image
+
+    - name: Pull and Deploy image to an EC2
+      run: |
+        docker run -p $PORT:$PORT $REGISTRY/$REPOSITORY:$NEW_TAG
+         
