@@ -19,7 +19,7 @@ jobs:
 
     env:
       AWS_REGION: ap-south-1
-      ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}      
+      ECR_REPOSITORY: demo-backend
 
     steps:
     - uses: actions/checkout@v3
