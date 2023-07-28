@@ -52,5 +52,5 @@ jobs:
 
     - name: Pull and Deploy image to an EC2
       run: |
-        docker run -p $PORT:$PORT $REGISTRY/$REPOSITORY:$NEW_TAG
+        docker run $REGISTRY/$REPOSITORY:$NEW_TAG
          
