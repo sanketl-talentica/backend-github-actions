@@ -51,6 +51,8 @@ jobs:
         echo $image
 
     - name: Pull and Deploy image to an EC2
+      env:
+        IMAGE: ${{ steps.build-image.outputs.image }}
       run: |
-        docker run $REGISTRY/$REPOSITORY:$NEW_TAG
+        docker run $IMAGE
          
