@@ -54,5 +54,5 @@ jobs:
       env:
         IMAGE: ${{ steps.build-image.outputs.image }}
       run: |
-        docker run $IMAGE
+        docker run -d -p $PORT:PORT $IMAGE
          
